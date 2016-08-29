@@ -1,0 +1,14 @@
+[Unit]
+Description=Uchiwa
+After=sensu-api.service
+
+[Service]
+User=uchiwa
+Group=uchiwa
+ExecStart=/opt/uchiwa/bin/uchiwa -c /etc/sensu/uchiwa.json -p /opt/uchiwa/src/public >> /var/log/uchiwa.log 2> /var/log/uchiwa.er
+KillMode=process
+Restart=on-failure
+RestartSec=1min
+
+[Install]
+WantedBy=default.target
